@@ -3,14 +3,17 @@ import copy
 
 
 def dfs(graph, root):
-    """stack"""
+    """
+    stack
+    보통 재귀로 구현..
+    """
     visited = [root]
     stack = sorted(graph[root], reverse=True)
     while stack:
         node = stack.pop()
         if node not in visited:
             visited.append(node)
-        stack += list(set(graph[node]) - set(visited))
+        stack += sorted(list(set(graph[node]) - set(visited)), reverse=True)
     return print(" ".join(list(map(str, visited))))
 
 
@@ -22,7 +25,7 @@ def bfs(graph, root):
         node = queue.popleft()
         if node not in visited:
             visited.append(node)
-        queue += list(set(graph[node]) - set(visited))
+        queue += sorted(list(set(graph[node]) - set(visited)))
     return print(" ".join(list(map(str, visited))))
 
 
